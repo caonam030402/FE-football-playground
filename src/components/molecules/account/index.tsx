@@ -24,7 +24,7 @@ export default function Account() {
       {currentUser ? (
         <HoverCard openDelay={0}>
           <HoverCardTrigger>
-            <Avatar className="size-8">
+            <Avatar className="size-10">
               <AvatarImage src="https://github.com/shadcn.png" />
               <AvatarFallback>CN</AvatarFallback>
             </Avatar>
