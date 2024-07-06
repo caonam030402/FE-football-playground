@@ -5,7 +5,7 @@ import Service from './components/service';
 
 export default function HomePage() {
   return (
-    <div>
+    <div className="">
       <Introduce />
       <Service />
     </div>
