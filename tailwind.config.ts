@@ -78,7 +78,16 @@ const config = {
       },
     },
   },
-  plugins: [animate],
+  plugins: [
+    animate,
+    function ({ addComponents }: { addComponents: any }) {
+      addComponents({
+        '.section-container': {
+          padding: '8rem 0',
+        },
+      });
+    },
+  ],
 } satisfies Config;
 
 export default config;
