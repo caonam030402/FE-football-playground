@@ -17,7 +17,7 @@ export default function Account() {
     { label: 'Settings', href: '/settings', icon: <Settings size={20} /> },
   ];
 
-  const currentUser = true;
+  const currentUser = false;
 
   return (
     <div>
@@ -54,7 +54,21 @@ export default function Account() {
           </HoverCardContent>
         </HoverCard>
       ) : (
-        <Button className="bg-primary px-6 text-white">LOGIN</Button>
+        <div className="space-x-3">
+          <Link href="/sign-up">
+            <Button size="sm" className="bg-primary px-6 text-white">
+              Log In
+            </Button>
+          </Link>
+          <Link href="/sign-up">
+            <Button
+              size="sm"
+              className="bg-white px-6 text-primary hover:bg-white"
+            >
+              Sign Up
+            </Button>
+          </Link>
+        </div>
       )}
     </div>
   );

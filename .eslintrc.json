@@ -52,6 +52,7 @@
         "@typescript-eslint/consistent-type-imports": "error", // Ensure `import type` is used when it's necessary
         "react/no-unstable-nested-components": "off",
         "import/no-extraneous-dependencies": "off",
+        "react/jsx-no-constructed-context-values": "off",
         "no-restricted-syntax": [
           "error",
           "ForInStatement",
