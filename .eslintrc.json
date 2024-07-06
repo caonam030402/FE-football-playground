@@ -51,6 +51,7 @@
         "@typescript-eslint/comma-dangle": "off", // Avoid conflict rule between Eslint and Prettier
         "@typescript-eslint/consistent-type-imports": "error", // Ensure `import type` is used when it's necessary
         "react/no-unstable-nested-components": "off",
+        "import/no-extraneous-dependencies": "off",
         "no-restricted-syntax": [
           "error",
           "ForInStatement",
