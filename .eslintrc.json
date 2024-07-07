@@ -53,6 +53,7 @@
         "react/no-unstable-nested-components": "off",
         "import/no-extraneous-dependencies": "off",
         "react/jsx-no-constructed-context-values": "off",
+        "max-classes-per-file": "off",
         "no-restricted-syntax": [
           "error",
           "ForInStatement",
