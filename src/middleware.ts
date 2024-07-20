@@ -3,9 +3,8 @@ import NextAuth from 'next-auth';
 import createMiddleware from 'next-intl/middleware';
 
 import authConfig from './auth/config';
+import { PATH, PUBLIC_PAGES } from './constants/Common';
 import { AppConfig } from './utils/AppConfig';
-
-const publicPages = ['/login'];
 
 const intlMiddleware = createMiddleware({
   locales: AppConfig.locales,
@@ -15,22 +14,35 @@ const intlMiddleware = createMiddleware({
 
 const { auth } = NextAuth(authConfig);
 
-const authHandler = auth((req) => intlMiddleware(req));
-
-export default auth(async function middleware(req: NextRequest) {
+const authHandler = auth((req) => {
   const publicPathnameRegex = RegExp(
-    `^(/(${AppConfig.locales.join('|')}))?(${publicPages
-      .flatMap((p) => (p === '/' ? ['', '/'] : p))
-      .join('|')})/?$`,
+    `^(/(${AppConfig.locales.join('|')}))?(${PUBLIC_PAGES.flatMap((p) =>
+      p === '/' ? ['', '/'] : p,
+    ).join('|')})/?$`,
     'i',
   );
 
   const isPublicPage = publicPathnameRegex.test(req.nextUrl.pathname);
+  const isProtected = !isPublicPage && !req.auth;
+  const isRejected =
+    req.auth &&
+    (req.nextUrl.pathname === PATH.SIGN_IN ||
+      req.nextUrl.pathname === PATH.SIGN_UP);
 
-  if (isPublicPage) {
-    return intlMiddleware(req);
+  if (isProtected) {
+    const newUrl = new URL(PATH.SIGN_IN, req.nextUrl.origin);
+    return Response.redirect(newUrl);
   }
 
+  if (isRejected) {
+    const newUrl = new URL(PATH.HOME, req.nextUrl.origin);
+    return Response.redirect(newUrl);
+  }
+
+  return intlMiddleware(req);
+});
+
+export default auth(async function middleware(req: NextRequest) {
   return (authHandler as any)(req);
 });
 
