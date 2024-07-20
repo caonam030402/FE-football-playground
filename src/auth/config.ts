@@ -7,6 +7,9 @@ export default {
     authorized: async ({ auth }) => {
       return !!auth;
     },
+    session: async ({ session }) => {
+      return session;
+    },
     // signIn: ({ account, profile }) => {
     //   console.log(account, profile);
     //   return true;

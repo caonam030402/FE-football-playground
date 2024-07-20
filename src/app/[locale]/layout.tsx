@@ -5,6 +5,7 @@ import { Montserrat } from 'next/font/google';
 import { notFound } from 'next/navigation';
 import { NextIntlClientProvider, useMessages } from 'next-intl';
 
+import SessionProviderWrapper from '@/providers/session-provider-wrapper';
 import { AppConfig } from '@/utils/AppConfig';
 
 const montserrat = Montserrat({ subsets: ['latin'] });
@@ -47,12 +48,14 @@ export default function RootLayout(props: {
   return (
     <html lang={props.params.locale}>
       <body className={montserrat.className}>
-        <NextIntlClientProvider
-          locale={props.params.locale}
-          messages={messages}
-        >
-          {props.children}
-        </NextIntlClientProvider>
+        <SessionProviderWrapper>
+          <NextIntlClientProvider
+            locale={props.params.locale}
+            messages={messages}
+          >
+            {props.children}
+          </NextIntlClientProvider>
+        </SessionProviderWrapper>
       </body>
     </html>
   );
