@@ -8,6 +8,7 @@ import { useForm } from 'react-hook-form';
 import { FaFacebookF, FaGoogle } from 'react-icons/fa';
 import type { z } from 'zod';
 
+import { signInWithOAuth } from '@/auth/action';
 import { Button } from '@/components/atoms/button';
 import Divider from '@/components/atoms/divider';
 import {
@@ -113,14 +114,28 @@ export default function SignIn() {
           <Divider />
         </div>
         <div className="mt-6 flex w-full gap-3">
-          <Button className="w-full space-x-2" variant="outline">
-            <FaGoogle size={20} />
-            <span>Google</span>
-          </Button>
-          <Button className="w-full space-x-2" variant="outline">
-            <FaFacebookF size={20} />
-            Facebook
-          </Button>
+          <form
+            className="w-full"
+            action={() => {
+              signInWithOAuth({ provider: 'google' });
+            }}
+          >
+            <Button className="w-full space-x-2" variant="outline">
+              <FaGoogle size={20} />
+              <span>Google</span>
+            </Button>
+          </form>
+          <form
+            className="w-full"
+            action={() => {
+              signInWithOAuth({ provider: 'facebook' });
+            }}
+          >
+            <Button className="w-full space-x-2" variant="outline">
+              <FaFacebookF size={20} />
+              Facebook
+            </Button>
+          </form>
         </div>
         <div className="mt-6 space-x-1 text-center text-sm">
           <span>Do you have an account?</span>

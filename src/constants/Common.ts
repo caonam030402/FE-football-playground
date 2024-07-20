@@ -4,4 +4,4 @@ export const PATH = {
   SIGN_UP: '/sign-up',
 };
 
-export const PUBLIC_PAGES = [PATH.SIGN_IN, PATH.SIGN_UP];
+export const PUBLIC_PAGES = [PATH.SIGN_IN, PATH.SIGN_UP, PATH.HOME];

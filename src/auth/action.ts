@@ -12,6 +12,10 @@ export async function signInWithOAuth({
   await signIn(provider, { redirectTo: '/' });
 }
 
+export async function signInWithCredential({ body }: { body: FormData }) {
+  await signIn('credentials', body, { redirectTo: '/' });
+}
+
 export async function signOut() {
   await _signOut({ redirectTo: PATH.SIGN_IN });
 }

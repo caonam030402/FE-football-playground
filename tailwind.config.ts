@@ -83,7 +83,7 @@ const config = {
     function ({ addComponents }: { addComponents: any }) {
       addComponents({
         '.section-container': {
-          padding: '8rem 0',
+          padding: '8rem 0 0 0',
         },
       });
     },

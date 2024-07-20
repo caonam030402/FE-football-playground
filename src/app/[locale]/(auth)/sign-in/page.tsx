@@ -8,7 +8,7 @@ import { useForm } from 'react-hook-form';
 import { FaFacebookF, FaGoogle } from 'react-icons/fa';
 import type { z } from 'zod';
 
-import { signInWithOAuth } from '@/auth/action';
+import { signInWithCredential, signInWithOAuth } from '@/auth/action';
 import { Button } from '@/components/atoms/button';
 import Divider from '@/components/atoms/divider';
 import {
@@ -32,7 +32,10 @@ export default function SignIn() {
     resolver: zodResolver(formSchema),
   });
 
-  function onSubmit(_values: z.infer<typeof formSchema>) {}
+  function onSubmit(_values: z.infer<typeof formSchema>) {
+    signInWithCredential({ body: _values as any });
+  }
+
   return (
     <div className="relative bg-foreground">
       <div className='h-screen bg-[url("/assets/images/img_introduce.png")] bg-cover text-white opacity-45 backdrop-blur-2xl' />
@@ -108,10 +111,17 @@ export default function SignIn() {
               <span>Google</span>
             </Button>
           </form>
-          <Button className="w-full space-x-2" variant="outline">
-            <FaFacebookF size={20} />
-            Facebook
-          </Button>
+          <form
+            className="w-full"
+            action={() => {
+              signInWithOAuth({ provider: 'facebook' });
+            }}
+          >
+            <Button className="w-full space-x-2" variant="outline">
+              <FaFacebookF size={20} />
+              Facebook
+            </Button>
+          </form>
         </div>
         <div className="mt-6 space-x-1 text-center text-sm">
           <span>Do you have an account?</span>

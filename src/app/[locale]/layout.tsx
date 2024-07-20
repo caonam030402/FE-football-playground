@@ -4,6 +4,7 @@ import type { Metadata } from 'next';
 import { Montserrat } from 'next/font/google';
 import { notFound } from 'next/navigation';
 import { NextIntlClientProvider, useMessages } from 'next-intl';
+import { Suspense } from 'react';
 
 import SessionProviderWrapper from '@/providers/session-provider-wrapper';
 import { AppConfig } from '@/utils/AppConfig';
@@ -53,7 +54,9 @@ export default function RootLayout(props: {
             locale={props.params.locale}
             messages={messages}
           >
-            {props.children}
+            <Suspense fallback={<div>Loading...</div>}>
+              {props.children}
+            </Suspense>
           </NextIntlClientProvider>
         </SessionProviderWrapper>
       </body>
