@@ -14,6 +14,8 @@ interface IProps {
     title: string;
     href: string;
   };
+  classNameDescription?: string;
+  className?: string;
 }
 
 export default function SectionHeader({
@@ -21,29 +23,35 @@ export default function SectionHeader({
   title,
   description,
   action,
+  classNameDescription,
+  className,
 }: IProps) {
   return (
     <div
-      className={cn('mb-16 flex flex-col items-center', {
+      className={cn('mb-16 flex flex-col items-center', className, {
         'items-start': align === 'left',
         'items-end': align === 'right',
         'text-center': align === 'center',
       })}
     >
-      <div className="mb-3 text-4xl font-bold">{title}</div>
+      <div className="mb-5 text-4xl font-bold">{title}</div>
       <div
-        className={cn('w-[70%] text-center text-lg opacity-80', {
-          'text-left': align === 'left',
-          'text-right': align === 'right',
-          'text-center': align === 'center',
-        })}
+        className={cn(
+          'w-[70%] text-center text-lg opacity-80',
+          classNameDescription,
+          {
+            'text-left': align === 'left',
+            'text-right': align === 'right',
+            'text-center': align === 'center',
+          },
+        )}
       >
         {description}
       </div>
       {action && (
         <Link href={action.href}>
-          <Button size="lg" className="mt-5 space-x-2 px-5">
-            <span>{action.title}</span> <ChevronRight />
+          <Button size="lg" className="mt-7 space-x-2 px-5">
+            <span>{action.title}</span> <ChevronRight size={16} />
           </Button>
         </Link>
       )}
