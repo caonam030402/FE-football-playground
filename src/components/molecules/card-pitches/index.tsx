@@ -7,7 +7,7 @@ import AvatarGroup from '@/components/atoms/avatar-group';
 export default function CardPitches() {
   return (
     <div className="overflow-hidden rounded-xl bg-white">
-      <div className="">
+      <div className="h-[200px] overflow-hidden">
         <Image
           src="https://images.pexels.com/photos/23013656/pexels-photo-23013656/free-photo-of-etihad-stadium-in-manchester-england.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
           alt=""
