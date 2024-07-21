@@ -6,6 +6,7 @@ import FindPitch from './components/find-pitch';
 import Introduce from './components/introduce';
 import RecommendedPitches from './components/recommended-pitches';
 import Service from './components/service';
+import SocialMediaGallery from './components/social-media-gallery';
 
 export default function HomePage() {
   return (
@@ -16,6 +17,7 @@ export default function HomePage() {
       <RecommendedPitches />
       <FindOpponent />
       <FindLocalPlayersSection />
+      <SocialMediaGallery />
     </div>
   );
 }
