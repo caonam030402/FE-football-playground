@@ -23,8 +23,6 @@ export default function Account() {
 
   const user = session.data?.user;
 
-  if (!user) return null;
-
   return (
     <div>
       {user ? (
